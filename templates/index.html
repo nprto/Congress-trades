@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Main Page
+{% endblock %}
+
+{% block main %}
+
+<head>
+<style>
+
+</style>
+</head>
+
+<h1 style="text-align: left">Congress Stock Trade Tracker</h1>
+<h4 style="text-align: left">If your lawmakers think you're not looking, they'll do whatever the heck they want</h4>
+<br>
+
+    <div style="text-align: left">
+    Track the stock trades of House Reps through the lens of the committtees they serve on (Read <a href= "/why">here</a> about why this matters).
+    <br>
+    To get started, select a committee.
+    <br>
+    <br>
+
+
+
+</div>
+<br>
+
+    <form action="/committee" method="post">
+        <div class="form-group">
+            <select name="committee" placeholder = "committee", onchange="this.form.submit()">
+                <option disabled selected value="">Select a committee</option>
+
+                {% for names in names %}
+                <option value = '{{names}}' >{{names}}</option>
+                {% endfor %}
+
+            </select>
+        </div>
+    </form>
+
+{% endblock %}
+

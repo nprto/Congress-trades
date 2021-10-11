@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Reports
+{% endblock %}
+
+{% block main %}
+
+<head>
+<style>
+
+</style>
+</head>
+
+
+<h1 style="text-align: left">
+    {{ person }}
+</h1>
+
+<div style="text-align: left">
+    Below is a list of financial transaction reports filed by this committee
+    member. Click on one of them to to open a new browser tab
+    showing a copy of the report that they filed. Look for companies affected
+    by the <b>{{ hold_committee }}'s</b> deliberations. Is this legislator potentially taking advantage
+    of privileged information to trade stocks?
+</div>
+<br>
+
+    <table class="maintable" id="history" >
+        <thead>
+            <tr>
+                <th>Filing Date</th>
+                <th>Financial Dicslosure Report</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for report in reports %}
+
+                <script>
+                function myFunction() {
+                //window.open("{{ report['link'] }}", "width=200,height=100");
+                // window.open(x, "width=200,height=100");
+                }
+                </script>
+
+                <tr>
+                    <td>{{ report['filing_date'] }}</td>
+                    <!--<td><a href= {{ report['link'] }}  target="_blank" >View Report</a></td>-->
+                    <td><a href= {{ report['link'] }}
+                    target="popup"
+                    onclick="window.open('{{ report['link'] }}','popup','width=800,height=700');
+                     return false;">
+                    View Report</a></td>
+                </tr>
+            {% endfor %}
+
+        </tbody>
+    </table>
+
+<br>
+<br>
+
+<div style="text-align: left">
+    <!--Back to the  <a href= "/committee">{{ hold_committee }}</a> .-->
+</div>
+
+{% endblock %}
+
